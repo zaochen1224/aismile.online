@@ -1,0 +1,32 @@
+{
+  "name": "aismile-online",
+  "version": "1.0.0",
+  "description": "AI Smile Generator - Transform any photo with AI-powered smile generation",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node build.js && python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaochen1224/aismile.online.git"
+  },
+  "keywords": [
+    "ai",
+    "smile",
+    "generator",
+    "photo",
+    "editor",
+    "ailabtools",
+    "javascript",
+    "html5",
+    "css3"
+  ],
+  "author": "AI Smile Generator Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zaochen1224/aismile.online/issues"
+  },
+  "homepage": "https://aismile.online"
+} 
