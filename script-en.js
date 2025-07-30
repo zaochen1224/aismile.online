@@ -217,19 +217,28 @@ class AILabToolsClient {
     }
 
     getApiKey() {
-        // Priority 1: Environment variable (Cloudflare Pages)
+        // Priority 1: Cloudflare Pages environment variable (build-time injection)
+        if (typeof window !== 'undefined' && window.AILABTOOLS_API_KEY) {
+            return window.AILABTOOLS_API_KEY;
+        }
+        
+        // Priority 2: Global variable (Cloudflare Pages)
         if (typeof AILABTOOLS_API_KEY !== 'undefined') {
             return AILABTOOLS_API_KEY;
         }
         
-        // Priority 2: Process environment (Node.js environments)
+        // Priority 3: Process environment (Node.js environments)
         if (typeof process !== 'undefined' && process.env && process.env.AILABTOOLS_API_KEY) {
             return process.env.AILABTOOLS_API_KEY;
         }
         
-        // Priority 3: Local storage (temporary, for testing only)
+        // Priority 4: Local storage (temporary, for testing only)
         const stored = localStorage.getItem('ailabtools_api_key');
         if (stored) return stored;
+        
+        console.log('No API key found. Available methods:');
+        console.log('1. Set via console: smileGenerator.setApiKey("your-key")');
+        console.log('2. Check Cloudflare Pages environment variables');
         
         return '';
     }

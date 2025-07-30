@@ -733,6 +733,12 @@
     </script>
 
     <!-- Enhanced Script -->
+    <script>
+        // Inject environment variables at build time for Cloudflare Pages
+        if (typeof window !== 'undefined') {
+            window.AILABTOOLS_API_KEY = '{{AILABTOOLS_API_KEY}}';
+        }
+    </script>
     <script src="script_enhanced.js"></script>
     
     <!-- Service Worker for PWA -->
