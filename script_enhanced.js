@@ -10,7 +10,7 @@ const CONFIG = {
         BASE_URL: 'https://www.ailabapi.com',
         ENDPOINTS: {
             UPLOAD: '/api/v1/upload',
-            CHANGE_EXPRESSION: '/api/v1/change-expression',
+            CHANGE_EXPRESSION: '/api/portrait/effects/emotion-editor',
             RESULT: '/api/v1/result'
         },
         TIMEOUT: 30000,
@@ -39,11 +39,14 @@ const CONFIG = {
     },
     
     EXPRESSIONS: {
-        SMILE: 'smile',
-        HAPPY: 'happy',
-        LAUGH: 'laugh',
-        NATURAL: 'natural',
-        JOY: 'joy'
+        DIMPLE_SMILE: 10,
+        OPEN_SMILE: 11,
+        CLOSED_SMILE: 12,
+        HAPPY: 13,
+        LAUGH: 14,
+        NATURAL: 15,
+        WINK: 16,
+        CUSTOM: 100
     }
 };
 
@@ -255,7 +258,7 @@ class APIClient {
                 ...options,
                 signal: controller.signal,
                 headers: {
-                    'Authorization': `Bearer ${this.apiKey}`,
+                    'ailabapi-api-key': this.apiKey,
                     'X-Request-ID': Utils.generateId(),
                     ...options.headers
                 }
@@ -313,36 +316,59 @@ class APIClient {
         return this.extractUrl(data, ['image_url', 'url', 'file_url']);
     }
 
-    async changeExpression(imageUrl, expression = CONFIG.EXPRESSIONS.SMILE, options = {}) {
-        const payload = {
-            image_url: imageUrl,
-            expression: expression,
-            intensity: options.intensity || 0.8,
-            preserve_identity: options.preserveIdentity !== false,
-            enhance_quality: options.enhanceQuality !== false,
-            return_format: options.returnFormat || 'url'
-        };
-
-        const response = await this.makeRequest(`${this.baseURL}${CONFIG.API.ENDPOINTS.CHANGE_EXPRESSION}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
-
-        const data = await response.json();
-        
-        if (data.result_url || data.image_url || data.url) {
-            return this.extractUrl(data, ['result_url', 'image_url', 'url']);
+    async changeExpression(imageFile, expressionType = CONFIG.EXPRESSIONS.DIMPLE_SMILE) {
+        if (!this.apiKey) {
+            throw new APIError('API key is required. Please set your AILabTools API key.');
         }
-        
-        if (data.job_id || data.task_id || data.id) {
-            const jobId = data.job_id || data.task_id || data.id;
-            return this.pollForResult(jobId);
+
+        // Validate image file
+        if (imageFile.size > CONFIG.FILE.MAX_SIZE) {
+            throw new ValidationError(`Image size exceeds ${Utils.formatFileSize(CONFIG.FILE.MAX_SIZE)} limit.`);
         }
-        
-        throw new APIError('Unexpected response format from API');
+
+        if (!CONFIG.FILE.ALLOWED_TYPES.includes(imageFile.type)) {
+            throw new ValidationError(`Unsupported image format. Please use ${CONFIG.FILE.ALLOWED_EXTENSIONS.join(', ')}.`);
+        }
+
+        // Create FormData for multipart/form-data request
+        const formData = new FormData();
+        formData.append('image_target', imageFile);
+        formData.append('service_choice', expressionType.toString());
+
+        console.log(`Making API request to: ${this.baseURL}${CONFIG.API.ENDPOINTS.CHANGE_EXPRESSION}`);
+        console.log(`Expression type: ${expressionType}`);
+        console.log(`Image size: ${Utils.formatFileSize(imageFile.size)}`);
+
+        const response = await this.makeRequest(
+            `${this.baseURL}${CONFIG.API.ENDPOINTS.CHANGE_EXPRESSION}`,
+            {
+                method: 'POST',
+                body: formData
+                // Note: Don't set Content-Type header for FormData, browser will set it automatically
+            }
+        );
+
+        const responseData = await response.json();
+        console.log('API Response:', responseData);
+
+        // Handle response according to AILabTools format
+        if (responseData.error_code !== 0) {
+            throw new APIError(responseData.error_msg || 'API processing failed');
+        }
+
+        // Extract image data from response
+        if (responseData.data && responseData.data.image) {
+            const base64Image = responseData.data.image;
+            
+            // Ensure the base64 string has proper data URL format
+            if (base64Image.startsWith('data:image/')) {
+                return base64Image;
+            } else {
+                return `data:image/jpeg;base64,${base64Image}`;
+            }
+        } else {
+            throw new APIError('No image data found in API response');
+        }
     }
 
     async pollForResult(jobId, maxAttempts = 30) {
@@ -1168,19 +1194,14 @@ class EnhancedAISmileGenerator {
         Utils.announceToScreenReader('开始AI处理，请稍候');
 
         try {
-            // Step 1: Upload image
-            this.updateProgress(10, '正在上传图片...', CONFIG.API.ESTIMATED_TIMES.UPLOAD);
-            const imageUrl = await this.apiClient.uploadImage(this.currentImage.file);
+            // Step 1: Validate image
+            this.updateProgress(10, '正在验证图片...', CONFIG.API.ESTIMATED_TIMES.UPLOAD);
             
-            this.updateProgress(30, '图片上传成功，开始AI处理...');
+            this.updateProgress(30, '开始AI处理...');
             
-            // Step 2: Process with AI
+            // Step 2: Process with AI directly
             this.updateProgress(50, '正在分析面部特征...', CONFIG.API.ESTIMATED_TIMES.PROCESSING);
-            const resultUrl = await this.apiClient.changeExpression(imageUrl, CONFIG.EXPRESSIONS.SMILE, {
-                intensity: 0.8,
-                preserveIdentity: true,
-                enhanceQuality: true
-            });
+            const resultUrl = await this.apiClient.changeExpression(this.currentImage.file, CONFIG.EXPRESSIONS.DIMPLE_SMILE);
             
             this.updateProgress(80, '正在生成微笑效果...');
             
