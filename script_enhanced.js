@@ -7,7 +7,7 @@
 // Enhanced Configuration
 const CONFIG = {
     API: {
-        BASE_URL: 'https://api.ailabtools.com',
+        BASE_URL: 'https://www.ailabapi.com',
         ENDPOINTS: {
             UPLOAD: '/api/v1/upload',
             CHANGE_EXPRESSION: '/api/v1/change-expression',
