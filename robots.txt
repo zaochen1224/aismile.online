@@ -1,0 +1,63 @@
+User-agent: *
+Allow: /
+
+# Allow specific bot crawling
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Block AI training bots (optional)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /*.json$
+Disallow: /*?*utm_*
+Disallow: /*?*session*
+Disallow: /*?*debug*
+
+# Allow important resources
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+Allow: /favicon.ico
+Allow: /manifest.json
+Allow: /sw.js
+
+# Sitemap location
+Sitemap: https://aismile.online/sitemap.xml
+Sitemap: https://aismile.online/sitemap-images.xml
+Sitemap: https://aismile.online/sitemap-news.xml
+
+# Host preference
+Host: aismile.online 

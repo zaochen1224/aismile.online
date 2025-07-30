@@ -1,0 +1,141 @@
+{
+    "name": "AI微笑生成器 - AI Smile Generator",
+    "short_name": "AI微笑生成器",
+    "description": "使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私。",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#4F46E5",
+    "theme_color": "#4F46E5",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "zh-CN",
+    "dir": "ltr",
+    "categories": ["photo", "productivity", "utilities"],
+    "screenshots": [
+        {
+            "src": "/images/screenshot-mobile-1.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "AI微笑生成器移动端界面"
+        },
+        {
+            "src": "/images/screenshot-desktop-1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "AI微笑生成器桌面端界面"
+        }
+    ],
+    "icons": [
+        {
+            "src": "/images/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "开始生成微笑",
+            "short_name": "生成微笑",
+            "description": "直接跳转到AI微笑生成工具",
+            "url": "/#generator",
+            "icons": [
+                {
+                    "src": "/images/shortcut-generator.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "查看使用教程",
+            "short_name": "使用教程",
+            "description": "了解如何使用AI微笑生成器",
+            "url": "/#how-it-works",
+            "icons": [
+                {
+                    "src": "/images/shortcut-tutorial.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "share_target": {
+        "action": "/#generator",
+        "method": "POST",
+        "enctype": "multipart/form-data",
+        "params": {
+            "files": [
+                {
+                    "name": "image",
+                    "accept": ["image/jpeg", "image/png", "image/webp"]
+                }
+            ]
+        }
+    },
+    "file_handlers": [
+        {
+            "action": "/#generator",
+            "accept": {
+                "image/jpeg": [".jpg", ".jpeg"],
+                "image/png": [".png"],
+                "image/webp": [".webp"]
+            }
+        }
+    ],
+    "protocol_handlers": [
+        {
+            "protocol": "web+aismile",
+            "url": "/#generator?url=%s"
+        }
+    ],
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    }
+} 

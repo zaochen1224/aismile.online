@@ -1,0 +1,141 @@
+{
+    "name": "AI Smile Generator - Add Natural Smile to Photos Free",
+    "short_name": "AI Smile Generator",
+    "description": "Transform any photo with AI-powered smile generation. Free online tool to add natural, realistic smiles to your pictures instantly. No registration required.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#4F46E5",
+    "theme_color": "#4F46E5",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "en",
+    "dir": "ltr",
+    "categories": ["photo", "productivity", "utilities"],
+    "screenshots": [
+        {
+            "src": "/images/screenshot-mobile-1.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "AI Smile Generator mobile interface"
+        },
+        {
+            "src": "/images/screenshot-desktop-1.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "AI Smile Generator desktop interface"
+        }
+    ],
+    "icons": [
+        {
+            "src": "/images/icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "/images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable any"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Start Generating Smiles",
+            "short_name": "Generate Smile",
+            "description": "Jump directly to the AI smile generation tool",
+            "url": "/#generator",
+            "icons": [
+                {
+                    "src": "/images/shortcut-generator.png",
+                    "sizes": "96x96"
+                }
+            ]
+        },
+        {
+            "name": "View Tutorial",
+            "short_name": "Tutorial",
+            "description": "Learn how to use the AI Smile Generator",
+            "url": "/#how-it-works",
+            "icons": [
+                {
+                    "src": "/images/shortcut-tutorial.png",
+                    "sizes": "96x96"
+                }
+            ]
+        }
+    ],
+    "share_target": {
+        "action": "/#generator",
+        "method": "POST",
+        "enctype": "multipart/form-data",
+        "params": {
+            "files": [
+                {
+                    "name": "image",
+                    "accept": ["image/jpeg", "image/png", "image/webp"]
+                }
+            ]
+        }
+    },
+    "file_handlers": [
+        {
+            "action": "/#generator",
+            "accept": {
+                "image/jpeg": [".jpg", ".jpeg"],
+                "image/png": [".png"],
+                "image/webp": [".webp"]
+            }
+        }
+    ],
+    "protocol_handlers": [
+        {
+            "protocol": "web+aismile",
+            "url": "/#generator?url=%s"
+        }
+    ],
+    "edge_side_panel": {
+        "preferred_width": 400
+    },
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    }
+} 

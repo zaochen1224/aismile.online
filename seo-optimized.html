@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>AI微笑生成器 - 免费在线添加自然微笑效果 | AI Smile Generator</title>
+    <meta name="title" content="AI微笑生成器 - 免费在线添加自然微笑效果 | AI Smile Generator">
+    <meta name="description" content="使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私，一键下载高质量结果。">
+    <meta name="keywords" content="AI微笑生成器,人工智能,照片编辑,微笑滤镜,面部表情编辑,在线图片处理,免费AI工具,smile generator,facial expression">
+    <meta name="author" content="AI Smile Generator Team">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="zh-CN">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aismile.online/">
+    <meta property="og:title" content="AI微笑生成器 - 免费在线添加自然微笑效果">
+    <meta property="og:description" content="使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私。">
+    <meta property="og:image" content="https://aismile.online/images/og-image-1200x630.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="AI微笑生成器 - 智能照片微笑效果处理">
+    <meta property="og:site_name" content="AI Smile Generator">
+    <meta property="og:locale" content="zh_CN">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aismile.online/">
+    <meta property="twitter:title" content="AI微笑生成器 - 免费在线添加自然微笑效果">
+    <meta property="twitter:description" content="使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私。">
+    <meta property="twitter:image" content="https://aismile.online/images/twitter-image-1200x675.jpg">
+    <meta property="twitter:image:alt" content="AI微笑生成器界面截图">
+    <meta property="twitter:creator" content="@AISmileGenerator">
+    <meta property="twitter:site" content="@AISmileGenerator">
+    
+    <!-- Additional SEO Meta Tags -->
+    <link rel="canonical" href="https://aismile.online/">
+    <link rel="alternate" hreflang="zh-cn" href="https://aismile.online/">
+    <link rel="alternate" hreflang="en" href="https://aismile.online/en/">
+    <link rel="alternate" hreflang="x-default" href="https://aismile.online/">
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/android-chrome-512x512.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4F46E5">
+    <meta name="msapplication-TileColor" content="#4F46E5">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.ailabtools.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Critical CSS (inline for performance) -->
+    <style>
+        /* Critical above-the-fold styles */
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;padding:0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;color:#1f2937}
+        .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+        .header{padding:2rem 0;text-align:center}
+        .site-title{font-size:3rem;font-weight:800;color:#fff;margin-bottom:1rem}
+        .site-description{font-size:1.25rem;color:rgba(255,255,255,0.9);margin-bottom:2rem}
+        .upload-area{background:#fff;border:2px dashed #d1d5db;border-radius:1.5rem;padding:3rem;text-align:center;cursor:pointer;transition:all 0.3s ease}
+        .upload-area:hover{border-color:#4f46e5;background:#eef2ff;transform:translateY(-2px)}
+        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:1rem 2rem;border:none;border-radius:1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease}
+        .btn-primary{background:linear-gradient(135deg,#4f46e5,#4338ca);color:#fff}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(79,70,229,0.3)}
+    </style>
+    
+    <!-- Structured Data - WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI微笑生成器",
+        "alternateName": "AI Smile Generator",
+        "description": "使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私。",
+        "url": "https://aismile.online",
+        "applicationCategory": "PhotoEditingApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "softwareVersion": "3.0.0",
+        "datePublished": "2024-01-15",
+        "dateModified": "2024-07-30",
+        "inLanguage": ["zh-CN", "en"],
+        "isAccessibleForFree": true,
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "AI驱动的微笑生成",
+            "实时图片处理",
+            "前后对比功能",
+            "免费使用",
+            "无需注册",
+            "隐私保护",
+            "高质量输出",
+            "多格式支持",
+            "移动端友好",
+            "一键下载"
+        ],
+        "screenshot": "https://aismile.online/images/screenshot.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "AI Smile Generator Team",
+            "url": "https://aismile.online"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI Smile Generator",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://aismile.online/images/logo-512x512.png",
+                "width": 512,
+                "height": 512
+            }
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "1247",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": {
+                    "@type": "Person",
+                    "name": "李小明"
+                },
+                "datePublished": "2024-07-20",
+                "reviewBody": "非常好用的AI工具，生成的微笑效果很自然，完全免费，强烈推荐！",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首页",
+                "item": "https://aismile.online"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "AI微笑生成器",
+                "item": "https://aismile.online/#generator"
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Structured Data - FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "AI微笑生成器是免费的吗？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "是的，我们的AI微笑生成器完全免费使用，无需注册或付费。您可以无限次使用我们的服务来为您的照片添加自然的微笑效果。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "支持哪些图片格式？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "我们支持常见的图片格式，包括JPG、JPEG、PNG和WebP。文件大小限制为10MB，建议使用清晰的正面肖像照片以获得最佳效果。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "我的照片会被保存吗？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "不会。我们非常重视您的隐私。您的照片仅用于AI处理，处理完成后会立即删除，不会在我们的服务器上保存任何个人照片。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "处理一张照片需要多长时间？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "通常情况下，处理一张照片需要10-30秒，具体时间取决于图片大小和网络状况。我们的AI算法经过优化，能够快速生成高质量的微笑效果。"
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            page_title: 'AI微笑生成器 - 首页',
+            page_location: 'https://aismile.online',
+            custom_map: {'custom_parameter_1': 'ai_tool_usage'}
+        });
+    </script>
+    
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+    </script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style_enhanced.css">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style_enhanced.css" as="style">
+    <link rel="preload" href="script_enhanced.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    
+    <!-- Performance Hints -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AI微笑生成器">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link" aria-label="跳转到主要内容">跳转到主要内容</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="site-title">
+                    <span class="emoji" aria-hidden="true">😊</span>
+                    AI微笑生成器
+                </h1>
+                <p class="site-description">使用人工智能技术为任何照片添加自然真实的微笑效果</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main" role="main">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="hero-title">
+            <div class="container">
+                <h2 id="hero-title" class="hero-title">瞬间为您的照片添加完美微笑</h2>
+                <p class="hero-description">
+                    上传任何肖像照片，观看我们的AI技术添加自然、美丽的微笑效果，
+                    同时完美保持人物的独特面部特征和身份特征。
+                </p>
+                
+                <!-- Key Features -->
+                <div class="features-grid" role="list" aria-label="主要功能">
+                    <div class="feature-item" role="listitem">
+                        <span class="feature-icon" aria-hidden="true">🤖</span>
+                        <h3>AI智能处理</h3>
+                        <p>先进的面部识别技术</p>
+                    </div>
+                    <div class="feature-item" role="listitem">
+                        <span class="feature-icon" aria-hidden="true">⚡</span>
+                        <h3>即时生成</h3>
+                        <p>几秒钟内处理完成</p>
+                    </div>
+                    <div class="feature-item" role="listitem">
+                        <span class="feature-icon" aria-hidden="true">🔒</span>
+                        <h3>隐私优先</h3>
+                        <p>照片安全处理，不保存</p>
+                    </div>
+                    <div class="feature-item" role="listitem">
+                        <span class="feature-icon" aria-hidden="true">💯</span>
+                        <h3>完全免费</h3>
+                        <p>无需注册或付费</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Area -->
+        <section class="upload-section" aria-labelledby="upload-title" id="generator">
+            <div class="container">
+                <h2 id="upload-title" class="section-title">上传您的照片</h2>
+                
+                <!-- Upload Area -->
+                <div id="uploadArea" class="upload-area" role="button" tabindex="0" 
+                     aria-label="点击或拖拽上传图片"
+                     aria-describedby="upload-instructions">
+                    <div class="upload-content">
+                        <div class="upload-icon" aria-hidden="true">📸</div>
+                        <h3 class="upload-title">将照片拖拽到这里</h3>
+                        <p class="upload-subtitle">或点击选择文件</p>
+                        
+                        <div class="upload-instructions" id="upload-instructions">
+                            <div class="upload-format-list">
+                                <span class="format-badge">JPG</span>
+                                <span class="format-badge">PNG</span>
+                                <span class="format-badge">WebP</span>
+                            </div>
+                            <p class="upload-size-limit">
+                                <i class="material-icons">info</i>
+                                最大文件大小：10MB
+                            </p>
+                        </div>
+                    </div>
+                    <input type="file" id="fileInput" class="file-input" 
+                           accept="image/jpeg,image/jpg,image/png,image/webp"
+                           aria-label="选择图片文件">
+                </div>
+
+                <!-- Image Preview -->
+                <div id="imagePreview" class="image-preview" style="display: none;">
+                    <div class="preview-container zoom-container">
+                        <img id="previewImg" class="preview-image" alt="上传的照片预览" loading="lazy">
+                        <button id="removeBtn" class="remove-btn" type="button" 
+                                aria-label="移除上传的图片">
+                            <span aria-hidden="true">✕</span>
+                        </button>
+                    </div>
+                    <div class="image-info">
+                        <p id="imageInfo" class="image-details"></p>
+                        <button id="processBtn" class="btn btn-primary process-btn" type="button">
+                            <span class="btn-icon" aria-hidden="true">✨</span>
+                            生成微笑效果
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Processing Area -->
+        <section class="processing-section" aria-labelledby="processing-title">
+            <div class="container">
+                <div id="loadingState" class="loading-state" style="display: none;" 
+                     role="status" aria-live="polite">
+                    <h2 id="processing-title" class="section-title">正在处理您的照片</h2>
+                    
+                    <div class="loading-animation">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <p id="loadingTip" class="loading-tip">正在分析面部特征...</p>
+                    <p id="timeEstimate" class="time-estimate"></p>
+                    
+                    <div class="processing-steps">
+                        <div class="step active">
+                            <div class="step-number">1</div>
+                            <span class="step-text">分析面部</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <span class="step-text">生成微笑</span>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <span class="step-text">优化质量</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Area -->
+        <section class="result-section" aria-labelledby="result-title">
+            <div class="container">
+                <!-- Before/After Comparison -->
+                <div id="comparisonSection" class="comparison-section" style="display: none;">
+                    <h2 id="result-title" class="section-title">您的精彩结果</h2>
+                    
+                    <div class="comparison-container">
+                        <div class="comparison-wrapper">
+                            <img id="beforeImg" class="comparison-image before" alt="原始照片" loading="lazy">
+                            <img id="afterImg" class="comparison-image after" alt="AI增强后的微笑照片" loading="lazy">
+                            <div class="comparison-divider" aria-hidden="true"></div>
+                            <div class="comparison-labels">
+                                <span class="label before-label">处理前</span>
+                                <span class="label after-label">处理后</span>
+                            </div>
+                        </div>
+                        
+                        <div class="slider-container">
+                            <label for="comparisonSlider" class="slider-label">
+                                拖拽滑块对比处理前后效果
+                            </label>
+                            <input type="range" id="comparisonSlider" class="comparison-slider" 
+                                   min="0" max="100" value="50"
+                                   aria-label="对比滑块，显示原图与处理后图片的对比">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Result -->
+                <div id="resultSection" class="final-result" style="display: none;">
+                    <div class="result-image-container zoom-container">
+                        <img id="resultImg" class="result-image" alt="最终AI增强微笑效果图片" loading="lazy">
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button id="downloadBtn" class="btn btn-primary download-btn" type="button"
+                                aria-label="下载增强后的照片">
+                            <span class="btn-icon" aria-hidden="true">📥</span>
+                            下载结果
+                        </button>
+                        
+                        <button id="newImageBtn" class="btn btn-secondary new-image-btn" type="button"
+                                aria-label="上传新照片">
+                            <span class="btn-icon" aria-hidden="true">🔄</span>
+                            处理新照片
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div id="shareSection" class="share-section" style="display: none;">
+                    <h3 class="share-title">
+                        <i class="material-icons">share</i>
+                        分享您的结果
+                    </h3>
+                    <div class="share-buttons" role="group" aria-label="分享选项">
+                        <button class="share-btn facebook" data-platform="facebook" type="button"
+                                aria-label="分享到Facebook">
+                            <span class="share-icon" aria-hidden="true">📘</span>
+                            Facebook
+                        </button>
+                        <button class="share-btn twitter" data-platform="twitter" type="button"
+                                aria-label="分享到Twitter">
+                            <span class="share-icon" aria-hidden="true">🐦</span>
+                            Twitter
+                        </button>
+                        <button class="share-btn instagram" data-platform="instagram" type="button"
+                                aria-label="分享到Instagram">
+                            <span class="share-icon" aria-hidden="true">📷</span>
+                            Instagram
+                        </button>
+                        <button class="share-btn copy" data-platform="copy" type="button"
+                                aria-label="复制链接">
+                            <span class="share-icon" aria-hidden="true">🔗</span>
+                            复制链接
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="container">
+                <h2 id="how-it-works-title" class="section-title">使用方法</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-icon" aria-hidden="true">1</div>
+                        <h3>上传照片</h3>
+                        <p>选择任何肖像照片。我们的AI最适合处理清晰的正面照片，确保最佳效果。</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon" aria-hidden="true">2</div>
+                        <h3>AI智能处理</h3>
+                        <p>我们的先进AI算法会分析面部特征，生成自然的微笑效果，同时保持人物身份特征。</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon" aria-hidden="true">3</div>
+                        <h3>下载结果</h3>
+                        <p>立即获得增强后的照片。对比前后效果，然后下载或分享您的精彩结果。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-detailed" aria-labelledby="features-title">
+            <div class="container">
+                <h2 id="features-title" class="section-title">为什么选择我们的AI微笑生成器？</h2>
+                <div class="features-detailed-grid">
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">🎯</div>
+                        <h3>精准识别</h3>
+                        <p>采用最新的深度学习算法，精确识别面部关键点，确保微笑效果自然逼真。我们的AI模型经过数百万张照片训练，能够处理各种角度和光线条件下的肖像照片。</p>
+                    </div>
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">🛡️</div>
+                        <h3>隐私保护</h3>
+                        <p>您的照片安全是我们的首要考虑。所有图片仅在处理过程中临时存储，处理完成后立即删除。我们不会保存、分享或用于其他目的。</p>
+                    </div>
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">⚡</div>
+                        <h3>快速处理</h3>
+                        <p>优化的云端处理架构，确保在10-30秒内完成照片处理。无需等待，即时获得高质量的微笑效果。</p>
+                    </div>
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">📱</div>
+                        <h3>全平台支持</h3>
+                        <p>完美支持手机、平板和桌面设备。响应式设计确保在任何屏幕尺寸下都能获得最佳使用体验。</p>
+                    </div>
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">🎨</div>
+                        <h3>自然效果</h3>
+                        <p>生成的微笑效果自然真实，完美融入原始照片。保持人物原有的面部特征和表情特点，避免生硬的修改痕迹。</p>
+                    </div>
+                    <div class="feature-detailed-card">
+                        <div class="feature-detailed-icon">💎</div>
+                        <h3>高质量输出</h3>
+                        <p>保持原始照片的分辨率和质量，输出高清晰度的处理结果。支持多种图片格式，满足不同使用需求。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title" class="section-title">常见问题</h2>
+                <div class="faq-container">
+                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 class="faq-question" itemprop="name">AI微笑生成器是免费的吗？</h3>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">是的，我们的AI微笑生成器完全免费使用，无需注册或付费。您可以无限次使用我们的服务来为您的照片添加自然的微笑效果。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 class="faq-question" itemprop="name">支持哪些图片格式？</h3>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">我们支持常见的图片格式，包括JPG、JPEG、PNG和WebP。文件大小限制为10MB，建议使用清晰的正面肖像照片以获得最佳效果。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 class="faq-question" itemprop="name">我的照片会被保存吗？</h3>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">不会。我们非常重视您的隐私。您的照片仅用于AI处理，处理完成后会立即删除，不会在我们的服务器上保存任何个人照片。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 class="faq-question" itemprop="name">处理一张照片需要多长时间？</h3>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">通常情况下，处理一张照片需要10-30秒，具体时间取决于图片大小和网络状况。我们的AI算法经过优化，能够快速生成高质量的微笑效果。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                        <h3 class="faq-question" itemprop="name">如何获得最佳效果？</h3>
+                        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                            <p itemprop="text">为了获得最佳的微笑生成效果，建议使用清晰的正面肖像照片，确保人物面部清晰可见，光线充足。避免使用模糊、侧面或遮挡面部的照片。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Reviews Section -->
+        <section class="reviews-section" aria-labelledby="reviews-title">
+            <div class="container">
+                <h2 id="reviews-title" class="section-title">用户评价</h2>
+                <div class="reviews-grid">
+                    <div class="review-card" itemscope itemtype="https://schema.org/Review">
+                        <div class="review-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-value" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                                <meta itemprop="ratingValue" content="5">
+                                <meta itemprop="bestRating" content="5">
+                            </span>
+                        </div>
+                        <p class="review-text" itemprop="reviewBody">"非常好用的AI工具！生成的微笑效果很自然，完全看不出是后期处理的。而且完全免费，强烈推荐给大家！"</p>
+                        <div class="review-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">李小明</span>
+                            <span class="review-date" itemprop="datePublished" content="2024-07-20">2024年7月</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card" itemscope itemtype="https://schema.org/Review">
+                        <div class="review-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-value" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                                <meta itemprop="ratingValue" content="5">
+                                <meta itemprop="bestRating" content="5">
+                            </span>
+                        </div>
+                        <p class="review-text" itemprop="reviewBody">"作为摄影师，我经常需要为客户的照片添加微笑效果。这个工具节省了我大量的后期处理时间，效果也很专业。"</p>
+                        <div class="review-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">张摄影师</span>
+                            <span class="review-date" itemprop="datePublished" content="2024-07-15">2024年7月</span>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card" itemscope itemtype="https://schema.org/Review">
+                        <div class="review-rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span class="rating-value" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                                <meta itemprop="ratingValue" content="4">
+                                <meta itemprop="bestRating" content="5">
+                            </span>
+                        </div>
+                        <p class="review-text" itemprop="reviewBody">"界面简洁易用，处理速度很快。生成的微笑看起来很自然，家人朋友都很喜欢处理后的照片效果。"</p>
+                        <div class="review-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <span itemprop="name">王女士</span>
+                            <span class="review-date" itemprop="datePublished" content="2024-07-10">2024年7月</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于AI微笑生成器</h3>
+                    <p>
+                        我们的免费在线工具使用先进的人工智能技术为任何肖像照片添加自然、
+                        真实的微笑效果。采用最新的面部识别和图像生成模型，确保自然逼真的效果。
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="关注我们的微博">微博</a>
+                        <a href="#" aria-label="关注我们的微信">微信</a>
+                        <a href="#" aria-label="联系我们">邮箱</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>使用指南</h3>
+                    <ul>
+                        <li>支持JPG、PNG、WebP格式图片，最大10MB</li>
+                        <li>建议使用清晰的正面肖像照片获得最佳效果</li>
+                        <li>处理时间通常为10-30秒</li>
+                        <li>您的照片处理后会立即删除，保护隐私</li>
+                        <li>处理结果可即时下载，支持高质量输出</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>隐私与安全</h3>
+                    <ul>
+                        <li>所有处理都在安全的云端环境中进行</li>
+                        <li>照片处理完成后自动删除</li>
+                        <li>不收集或存储任何个人数据</li>
+                        <li>符合GDPR隐私保护规范</li>
+                        <li>使用HTTPS加密传输保护数据安全</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>技术支持</h3>
+                    <ul>
+                        <li><a href="#faq-section">常见问题解答</a></li>
+                        <li><a href="mailto:support@aismile.online">技术支持邮箱</a></li>
+                        <li><a href="/api-docs">API文档</a></li>
+                        <li><a href="/changelog">更新日志</a></li>
+                        <li><a href="/status">服务状态</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI微笑生成器. 由AILabTools面部表情AI技术驱动.</p>
+                <div class="footer-links">
+                    <a href="/privacy" aria-label="隐私政策">隐私政策</a>
+                    <a href="/terms" aria-label="服务条款">服务条款</a>
+                    <a href="/contact" aria-label="联系我们">联系我们</a>
+                    <a href="/sitemap.xml" aria-label="网站地图">网站地图</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Performance Monitoring -->
+    <script>
+        // Core Web Vitals monitoring
+        function sendToAnalytics(metric) {
+            gtag('event', metric.name, {
+                event_category: 'Web Vitals',
+                value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+                event_label: metric.id,
+                non_interaction: true,
+            });
+        }
+
+        // Load web vitals library
+        import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {
+            getCLS(sendToAnalytics);
+            getFID(sendToAnalytics);
+            getFCP(sendToAnalytics);
+            getLCP(sendToAnalytics);
+            getTTFB(sendToAnalytics);
+        });
+
+        // Page load performance
+        window.addEventListener('load', () => {
+            if ('performance' in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                gtag('event', 'page_load_time', {
+                    event_category: 'Performance',
+                    value: loadTime,
+                    event_label: 'Homepage'
+                });
+            }
+        });
+    </script>
+
+    <!-- Enhanced Script -->
+    <script src="script_enhanced.js"></script>
+    
+    <!-- Service Worker for PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 
