@@ -6,7 +6,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-    <!-- Homepage -->
+    <!-- Homepage (Chinese) -->
     <url>
         <loc>https://aismile.online/</loc>
         <lastmod>2024-07-30T10:00:00+08:00</lastmod>
@@ -24,7 +24,25 @@
         </image:image>
     </url>
 
-    <!-- Generator Tool Page -->
+    <!-- English Homepage - AI Smile Filter Online -->
+    <url>
+        <loc>https://aismile.online/index-en.html</loc>
+        <lastmod>2024-07-30T10:00:00+08:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://aismile.online/images/hero-image.jpg</image:loc>
+            <image:title>AI Smile Filter Online - Homepage Screenshot</image:title>
+            <image:caption>Free AI smile generator tool to add natural smile effects to photos online</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://aismile.online/images/before-after-demo.jpg</image:loc>
+            <image:title>AI Smile Filter Before After Comparison</image:title>
+            <image:caption>Demonstration of AI smile filter effects - better than Fotor smile adder</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Generator Tool Page (Chinese) -->
     <url>
         <loc>https://aismile.online/#generator</loc>
         <lastmod>2024-07-30T10:00:00+08:00</lastmod>
@@ -32,7 +50,15 @@
         <priority>0.9</priority>
     </url>
 
-    <!-- How It Works -->
+    <!-- English AI Smile Generator Tool -->
+    <url>
+        <loc>https://aismile.online/index-en.html#generator</loc>
+        <lastmod>2024-07-30T10:00:00+08:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- How It Works (Chinese) -->
     <url>
         <loc>https://aismile.online/#how-it-works</loc>
         <lastmod>2024-07-25T10:00:00+08:00</lastmod>
@@ -40,7 +66,15 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- FAQ Page -->
+    <!-- English How AI Smile Filter Works -->
+    <url>
+        <loc>https://aismile.online/index-en.html#how-it-works</loc>
+        <lastmod>2024-07-25T10:00:00+08:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- FAQ Page (Chinese) -->
     <url>
         <loc>https://aismile.online/#faq</loc>
         <lastmod>2024-07-20T10:00:00+08:00</lastmod>
@@ -48,9 +82,25 @@
         <priority>0.7</priority>
     </url>
 
-    <!-- Features Page -->
+    <!-- English FAQ - AI Smile Filter Questions -->
+    <url>
+        <loc>https://aismile.online/index-en.html#faq-section</loc>
+        <lastmod>2024-07-20T10:00:00+08:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Features Page (Chinese) -->
     <url>
         <loc>https://aismile.online/#features</loc>
+        <lastmod>2024-07-15T10:00:00+08:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- English Features - AI Smile Tool Benefits -->
+    <url>
+        <loc>https://aismile.online/index-en.html#features-title</loc>
         <lastmod>2024-07-15T10:00:00+08:00</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -110,14 +160,6 @@
         <lastmod>2024-07-30T10:00:00+08:00</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.4</priority>
-    </url>
-
-    <!-- English Version -->
-    <url>
-        <loc>https://aismile.online/en/</loc>
-        <lastmod>2024-07-30T10:00:00+08:00</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
     </url>
 
 </urlset> 

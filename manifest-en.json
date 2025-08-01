@@ -1,8 +1,8 @@
 {
-    "name": "AI Smile Generator - Add Natural Smile to Photos Free",
-    "short_name": "AI Smile Generator",
-    "description": "Transform any photo with AI-powered smile generation. Free online tool to add natural, realistic smiles to your pictures instantly. No registration required.",
-    "start_url": "/",
+    "name": "AI Smile Filter Online Free - AI Smile Generator Tool",
+    "short_name": "AI Smile Filter",
+    "description": "Free AI smile filter online tool to add natural smile effects to photos instantly. Best AI smile generator with face smile filter technology - better than Fotor smile adder and completely free!",
+    "start_url": "/index-en.html",
     "display": "standalone",
     "background_color": "#4F46E5",
     "theme_color": "#4F46E5",
@@ -10,21 +10,21 @@
     "scope": "/",
     "lang": "en",
     "dir": "ltr",
-    "categories": ["photo", "productivity", "utilities"],
+    "categories": ["photo", "productivity", "utilities", "graphics", "lifestyle"],
     "screenshots": [
         {
             "src": "/images/screenshot-mobile-1.png",
             "sizes": "540x720",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "AI Smile Generator mobile interface"
+            "label": "AI Smile Filter mobile interface - smile effect filter"
         },
         {
             "src": "/images/screenshot-desktop-1.png",
             "sizes": "1280x720",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "AI Smile Generator desktop interface"
+            "label": "AI Smile Generator desktop interface - face smile filter tool"
         }
     ],
     "icons": [
@@ -79,10 +79,10 @@
     ],
     "shortcuts": [
         {
-            "name": "Start Generating Smiles",
-            "short_name": "Generate Smile",
-            "description": "Jump directly to the AI smile generation tool",
-            "url": "/#generator",
+            "name": "Start AI Smile Filter",
+            "short_name": "Smile Filter",
+            "description": "Jump directly to the AI smile generator tool",
+            "url": "/index-en.html#generator",
             "icons": [
                 {
                     "src": "/images/shortcut-generator.png",
@@ -91,10 +91,10 @@
             ]
         },
         {
-            "name": "View Tutorial",
+            "name": "View AI Smile Tutorial",
             "short_name": "Tutorial",
-            "description": "Learn how to use the AI Smile Generator",
-            "url": "/#how-it-works",
+            "description": "Learn how to use the AI smile filter online",
+            "url": "/index-en.html#how-it-works",
             "icons": [
                 {
                     "src": "/images/shortcut-tutorial.png",
@@ -104,7 +104,7 @@
         }
     ],
     "share_target": {
-        "action": "/#generator",
+        "action": "/index-en.html#generator",
         "method": "POST",
         "enctype": "multipart/form-data",
         "params": {
@@ -118,7 +118,7 @@
     },
     "file_handlers": [
         {
-            "action": "/#generator",
+            "action": "/index-en.html#generator",
             "accept": {
                 "image/jpeg": [".jpg", ".jpeg"],
                 "image/png": [".png"],
@@ -129,7 +129,7 @@
     "protocol_handlers": [
         {
             "protocol": "web+aismile",
-            "url": "/#generator?url=%s"
+            "url": "/index-en.html#generator?url=%s"
         }
     ],
     "edge_side_panel": {

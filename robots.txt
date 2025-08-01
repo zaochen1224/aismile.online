@@ -52,7 +52,13 @@ Allow: /images/
 Allow: /fonts/
 Allow: /favicon.ico
 Allow: /manifest.json
+Allow: /manifest-en.json
 Allow: /sw.js
+
+# Explicitly allow English version files for AI Smile Filter SEO
+Allow: /index-en.html
+Allow: /script-en.js
+Allow: /README-English.md
 
 # Sitemap location
 Sitemap: https://aismile.online/sitemap.xml
