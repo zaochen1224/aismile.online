@@ -1,30 +1,30 @@
 {
-    "name": "AI微笑生成器 - AI Smile Generator",
-    "short_name": "AI微笑生成器",
-    "description": "使用AI技术为任何照片添加自然、真实的微笑效果。免费在线工具，支持JPG、PNG格式，无需注册，保护隐私。",
+    "name": "AI Smile Filter Online Free - AI Smile Generator Tool",
+    "short_name": "AI Smile Filter",
+    "description": "Free AI smile filter online tool to add natural smile effects to photos instantly. Best AI smile generator with face smile filter technology - better than Fotor smile adder and completely free!",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#4F46E5",
     "theme_color": "#4F46E5",
     "orientation": "portrait-primary",
     "scope": "/",
-    "lang": "zh-CN",
+    "lang": "en",
     "dir": "ltr",
-    "categories": ["photo", "productivity", "utilities"],
+    "categories": ["photo", "productivity", "utilities", "graphics", "lifestyle"],
     "screenshots": [
         {
             "src": "/images/screenshot-mobile-1.png",
             "sizes": "540x720",
             "type": "image/png",
             "form_factor": "narrow",
-            "label": "AI微笑生成器移动端界面"
+            "label": "AI Smile Filter mobile interface - smile effect filter"
         },
         {
             "src": "/images/screenshot-desktop-1.png",
             "sizes": "1280x720",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "AI微笑生成器桌面端界面"
+            "label": "AI Smile Generator desktop interface - face smile filter tool"
         }
     ],
     "icons": [
@@ -79,9 +79,9 @@
     ],
     "shortcuts": [
         {
-            "name": "开始生成微笑",
-            "short_name": "生成微笑",
-            "description": "直接跳转到AI微笑生成工具",
+            "name": "Start AI Smile Filter",
+            "short_name": "Smile Filter",
+            "description": "Jump directly to the AI smile generator tool",
             "url": "/#generator",
             "icons": [
                 {
@@ -91,9 +91,9 @@
             ]
         },
         {
-            "name": "查看使用教程",
-            "short_name": "使用教程",
-            "description": "了解如何使用AI微笑生成器",
+            "name": "View AI Smile Tutorial",
+            "short_name": "Tutorial",
+            "description": "Learn how to use the AI smile filter online",
             "url": "/#how-it-works",
             "icons": [
                 {
