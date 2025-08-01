@@ -298,6 +298,51 @@ body {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+    z-index: 1;
+    /* 确保在移动端也能正确响应点击 */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Chrome移动端特殊处理 */
+@media screen and (max-width: 768px) {
+    .file-input {
+        position: relative;
+        width: 100%;
+        height: 60px;
+        opacity: 1;
+        background: var(--primary-500);
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-lg);
+        font-size: var(--font-size-base);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: var(--space-4);
+        cursor: pointer;
+        transition: var(--transition-normal);
+    }
+    
+    .file-input:hover {
+        background: var(--primary-600);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .file-input:active {
+        transform: translateY(0);
+    }
+    
+    /* 在移动端隐藏原来的上传区域点击事件 */
+    .upload-area {
+        pointer-events: none;
+    }
+    
+    .upload-area .upload-content {
+        pointer-events: none;
+    }
 }
 
 /* Image Preview */

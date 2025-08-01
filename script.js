@@ -831,10 +831,28 @@ class EnhancedAISmileGenerator {
 
     bindEvents() {
         if (this.uploadArea && this.fileInput) {
-            this.uploadArea.addEventListener('click', () => {
-                this.fileInput.click();
-                Utils.announceToScreenReader('File selection dialog opened');
-            });
+            // 检测是否为移动设备
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // 移动端特殊处理
+                this.fileInput.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    Utils.announceToScreenReader('File selection dialog opened');
+                });
+                
+                // 为移动端文件输入添加文本
+                const mobileText = this.fileInput.getAttribute('data-mobile-text');
+                if (mobileText) {
+                    this.fileInput.value = mobileText;
+                }
+            } else {
+                // 桌面端保持原有行为
+                this.uploadArea.addEventListener('click', () => {
+                    this.fileInput.click();
+                    Utils.announceToScreenReader('File selection dialog opened');
+                });
+            }
             
             this.uploadArea.addEventListener('dragover', this.handleDragOver.bind(this));
             this.uploadArea.addEventListener('drop', this.handleDrop.bind(this));
