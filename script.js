@@ -740,20 +740,101 @@ class EnhancedAISmileGenerator {
 
     async init() {
         try {
-            this.initializeElements();
-            this.bindEvents();
-            this.checkApiKey();
-            this.initializeComparison();
-            this.setupAccessibility();
-            this.setupPerformanceMonitoring();
-            this.checkMobileCompatibility();
+            // 基本检查
+            if (!document || !window) {
+                throw new Error('Browser environment not available');
+            }
+            
+            // 分步初始化，每步都有错误处理
+            try {
+                this.initializeElements();
+            } catch (error) {
+                console.warn('Element initialization warning:', error);
+                // 继续执行，不要因为元素问题而完全失败
+            }
+            
+            try {
+                this.bindEvents();
+            } catch (error) {
+                console.warn('Event binding warning:', error);
+            }
+            
+            try {
+                this.checkApiKey();
+            } catch (error) {
+                console.warn('API key check warning:', error);
+            }
+            
+            try {
+                this.initializeComparison();
+            } catch (error) {
+                console.warn('Comparison initialization warning:', error);
+            }
+            
+            try {
+                this.setupAccessibility();
+            } catch (error) {
+                console.warn('Accessibility setup warning:', error);
+            }
+            
+            try {
+                this.setupPerformanceMonitoring();
+            } catch (error) {
+                console.warn('Performance monitoring warning:', error);
+            }
+            
+            try {
+                this.checkMobileCompatibility();
+            } catch (error) {
+                console.warn('Mobile compatibility check warning:', error);
+            }
             
             console.log('Enhanced AI Smile Generator initialized successfully');
-            Utils.announceToScreenReader('AI Smile Generator is ready');
+            
+            // 尝试通知屏幕阅读器，但不让错误阻止初始化
+            try {
+                Utils.announceToScreenReader('AI Smile Generator is ready');
+            } catch (error) {
+                console.warn('Screen reader announcement failed:', error);
+            }
             
         } catch (error) {
             console.error('Failed to initialize application:', error);
-            this.toast.error('Application initialization failed. Please refresh the page and try again.');
+            
+            // 创建简单的错误提示，不依赖复杂的UI组件
+            const errorMessage = document.createElement('div');
+            errorMessage.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #fee2e2;
+                border: 1px solid #fecaca;
+                color: #dc2626;
+                padding: 16px 24px;
+                border-radius: 8px;
+                z-index: 10000;
+                max-width: 500px;
+                text-align: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-size: 14px;
+                line-height: 1.5;
+            `;
+            errorMessage.innerHTML = `
+                <strong>应用程序初始化失败</strong><br>
+                请刷新页面重试<br>
+                <small>错误: ${error.message}</small>
+            `;
+            document.body.appendChild(errorMessage);
+            
+            // 5秒后自动移除
+            setTimeout(() => {
+                if (errorMessage.parentNode) {
+                    errorMessage.parentNode.removeChild(errorMessage);
+                }
+            }, 5000);
+            
+            throw error; // 重新抛出错误，让上层处理
         }
     }
     
@@ -781,51 +862,181 @@ class EnhancedAISmileGenerator {
     }
 
     initializeElements() {
-        // Upload elements
-        this.uploadArea = document.getElementById('uploadArea');
-        this.fileInput = document.getElementById('fileInput');
-        this.imagePreview = document.getElementById('imagePreview');
-        this.previewImg = document.getElementById('previewImg');
-        this.removeBtn = document.getElementById('removeBtn');
-        this.imageInfo = document.getElementById('imageInfo');
-
-        // Processing elements
-        this.processBtn = document.getElementById('processBtn');
-        this.loadingState = document.getElementById('loadingState');
-        this.progressFill = document.getElementById('progressFill');
-        this.loadingTip = document.getElementById('loadingTip');
-        this.timeEstimate = document.getElementById('timeEstimate');
-
-        // Result elements
-        this.comparisonSection = document.getElementById('comparisonSection');
-        this.beforeImg = document.getElementById('beforeImg');
-        this.afterImg = document.getElementById('afterImg');
-        this.comparisonSlider = document.getElementById('comparisonSlider');
-        this.resultSection = document.getElementById('resultSection');
-        this.resultImg = document.getElementById('resultImg');
-        this.downloadBtn = document.getElementById('downloadBtn');
-        this.newImageBtn = document.getElementById('newImageBtn');
-
-        // Share elements
-        this.shareSection = document.getElementById('shareSection');
-        this.shareButtons = document.querySelectorAll('.share-btn');
-
-        // Initialize progress manager
-        if (this.progressFill && this.loadingTip) {
-            this.progressManager = new ProgressManager(
-                this.progressFill, 
-                this.loadingTip, 
-                this.timeEstimate
-            );
+        // 使用try-catch包装每个元素获取，避免因为缺少元素而失败
+        try {
+            this.uploadArea = document.getElementById('uploadArea');
+        } catch (error) {
+            console.warn('Upload area not found:', error);
+            this.uploadArea = null;
+        }
+        
+        try {
+            this.fileInput = document.getElementById('fileInput');
+        } catch (error) {
+            console.warn('File input not found:', error);
+            this.fileInput = null;
+        }
+        
+        try {
+            this.imagePreview = document.getElementById('imagePreview');
+        } catch (error) {
+            console.warn('Image preview not found:', error);
+            this.imagePreview = null;
+        }
+        
+        try {
+            this.previewImg = document.getElementById('previewImg');
+        } catch (error) {
+            console.warn('Preview image not found:', error);
+            this.previewImg = null;
+        }
+        
+        try {
+            this.removeBtn = document.getElementById('removeBtn');
+        } catch (error) {
+            console.warn('Remove button not found:', error);
+            this.removeBtn = null;
+        }
+        
+        try {
+            this.imageInfo = document.getElementById('imageInfo');
+        } catch (error) {
+            console.warn('Image info not found:', error);
+            this.imageInfo = null;
         }
 
-        this.addZoomButtons();
+        try {
+            this.processBtn = document.getElementById('processBtn');
+        } catch (error) {
+            console.warn('Process button not found:', error);
+            this.processBtn = null;
+        }
+        
+        try {
+            this.loadingState = document.getElementById('loadingState');
+        } catch (error) {
+            console.warn('Loading state not found:', error);
+            this.loadingState = null;
+        }
+        
+        try {
+            this.progressFill = document.getElementById('progressFill');
+        } catch (error) {
+            console.warn('Progress fill not found:', error);
+            this.progressFill = null;
+        }
+        
+        try {
+            this.loadingTip = document.getElementById('loadingTip');
+        } catch (error) {
+            console.warn('Loading tip not found:', error);
+            this.loadingTip = null;
+        }
+        
+        try {
+            this.timeEstimate = document.getElementById('timeEstimate');
+        } catch (error) {
+            console.warn('Time estimate not found:', error);
+            this.timeEstimate = null;
+        }
 
-        const requiredElements = ['uploadArea', 'fileInput', 'processBtn'];
-        for (const elementId of requiredElements) {
-            if (!document.getElementById(elementId)) {
-                throw new Error(`Required element not found: ${elementId}`);
+        try {
+            this.comparisonSection = document.getElementById('comparisonSection');
+        } catch (error) {
+            console.warn('Comparison section not found:', error);
+            this.comparisonSection = null;
+        }
+        
+        try {
+            this.beforeImg = document.getElementById('beforeImg');
+        } catch (error) {
+            console.warn('Before image not found:', error);
+            this.beforeImg = null;
+        }
+        
+        try {
+            this.afterImg = document.getElementById('afterImg');
+        } catch (error) {
+            console.warn('After image not found:', error);
+            this.afterImg = null;
+        }
+        
+        try {
+            this.comparisonSlider = document.getElementById('comparisonSlider');
+        } catch (error) {
+            console.warn('Comparison slider not found:', error);
+            this.comparisonSlider = null;
+        }
+        
+        try {
+            this.resultSection = document.getElementById('resultSection');
+        } catch (error) {
+            console.warn('Result section not found:', error);
+            this.resultSection = null;
+        }
+        
+        try {
+            this.resultImg = document.getElementById('resultImg');
+        } catch (error) {
+            console.warn('Result image not found:', error);
+            this.resultImg = null;
+        }
+        
+        try {
+            this.downloadBtn = document.getElementById('downloadBtn');
+        } catch (error) {
+            console.warn('Download button not found:', error);
+            this.downloadBtn = null;
+        }
+        
+        try {
+            this.newImageBtn = document.getElementById('newImageBtn');
+        } catch (error) {
+            console.warn('New image button not found:', error);
+            this.newImageBtn = null;
+        }
+
+        try {
+            this.shareSection = document.getElementById('shareSection');
+        } catch (error) {
+            console.warn('Share section not found:', error);
+            this.shareSection = null;
+        }
+        
+        try {
+            this.shareButtons = document.querySelectorAll('.share-btn');
+        } catch (error) {
+            console.warn('Share buttons not found:', error);
+            this.shareButtons = [];
+        }
+
+        // Initialize progress manager only if required elements exist
+        if (this.progressFill && this.loadingTip) {
+            try {
+                this.progressManager = new ProgressManager(
+                    this.progressFill, 
+                    this.loadingTip, 
+                    this.timeEstimate
+                );
+            } catch (error) {
+                console.warn('Progress manager initialization failed:', error);
+                this.progressManager = null;
             }
+        }
+
+        try {
+            this.addZoomButtons();
+        } catch (error) {
+            console.warn('Zoom buttons addition failed:', error);
+        }
+
+        // 检查最小必需元素，但不强制要求所有元素都存在
+        const requiredElements = ['uploadArea', 'fileInput'];
+        const missingElements = requiredElements.filter(id => !this[id]);
+        
+        if (missingElements.length > 0) {
+            console.warn('Some required elements are missing:', missingElements);
+            // 不抛出错误，让应用继续运行
         }
     }
 
@@ -854,109 +1065,211 @@ class EnhancedAISmileGenerator {
     }
 
     bindEvents() {
-        if (this.uploadArea && this.fileInput) {
-            // 检测是否为移动设备
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // 移动端特殊处理
-                this.fileInput.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    Utils.announceToScreenReader('File selection dialog opened');
-                });
+        try {
+            if (this.uploadArea && this.fileInput) {
+                // 检测是否为移动设备
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 
-                // iOS Safari 特殊处理
-                if (isIOS) {
-                    // 为iOS添加触摸事件处理
-                    this.uploadArea.addEventListener('touchstart', (e) => {
-                        e.preventDefault();
-                        this.handleMobileFileUpload();
-                    });
+                if (isMobile) {
+                    // 移动端特殊处理
+                    try {
+                        this.fileInput.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            Utils.announceToScreenReader('File selection dialog opened');
+                        });
+                    } catch (error) {
+                        console.warn('File input click event binding failed:', error);
+                    }
                     
-                    // 防止iOS上的双击缩放
-                    this.uploadArea.addEventListener('touchend', (e) => {
-                        e.preventDefault();
-                    });
+                    // iOS Safari 特殊处理
+                    if (isIOS) {
+                        // 为iOS添加触摸事件处理
+                        try {
+                            this.uploadArea.addEventListener('touchstart', (e) => {
+                                e.preventDefault();
+                                this.handleMobileFileUpload();
+                            });
+                        } catch (error) {
+                            console.warn('iOS touchstart event binding failed:', error);
+                        }
+                        
+                        // 防止iOS上的双击缩放
+                        try {
+                            this.uploadArea.addEventListener('touchend', (e) => {
+                                e.preventDefault();
+                            });
+                        } catch (error) {
+                            console.warn('iOS touchend event binding failed:', error);
+                        }
+                        
+                        // 添加点击事件作为备用
+                        try {
+                            this.uploadArea.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                this.handleMobileFileUpload();
+                            });
+                        } catch (error) {
+                            console.warn('iOS click event binding failed:', error);
+                        }
+                        
+                        // 添加长按事件作为额外备用
+                        try {
+                            this.uploadArea.addEventListener('contextmenu', (e) => {
+                                e.preventDefault();
+                                this.handleMobileFileUploadFallback();
+                            });
+                        } catch (error) {
+                            console.warn('iOS contextmenu event binding failed:', error);
+                        }
+                    } else {
+                        // 其他移动设备
+                        try {
+                            this.uploadArea.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                this.handleMobileFileUpload();
+                            });
+                        } catch (error) {
+                            console.warn('Mobile click event binding failed:', error);
+                        }
+                        
+                        // 添加触摸事件
+                        try {
+                            this.uploadArea.addEventListener('touchstart', (e) => {
+                                e.preventDefault();
+                                this.handleMobileFileUpload();
+                            });
+                        } catch (error) {
+                            console.warn('Mobile touchstart event binding failed:', error);
+                        }
+                    }
                     
-                    // 添加点击事件作为备用
-                    this.uploadArea.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        this.handleMobileFileUpload();
-                    });
-                    
-                    // 添加长按事件作为额外备用
-                    this.uploadArea.addEventListener('contextmenu', (e) => {
-                        e.preventDefault();
-                        this.handleMobileFileUploadFallback();
-                    });
+                    // 为移动端文件输入添加文本
+                    try {
+                        const mobileText = this.fileInput.getAttribute('data-mobile-text');
+                        if (mobileText) {
+                            this.fileInput.value = mobileText;
+                        }
+                    } catch (error) {
+                        console.warn('Mobile text setting failed:', error);
+                    }
                 } else {
-                    // 其他移动设备
-                    this.uploadArea.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        this.handleMobileFileUpload();
-                    });
-                    
-                    // 添加触摸事件
-                    this.uploadArea.addEventListener('touchstart', (e) => {
-                        e.preventDefault();
-                        this.handleMobileFileUpload();
-                    });
+                    // 桌面端保持原有行为
+                    try {
+                        this.uploadArea.addEventListener('click', () => {
+                            this.fileInput.click();
+                            Utils.announceToScreenReader('File selection dialog opened');
+                        });
+                    } catch (error) {
+                        console.warn('Desktop click event binding failed:', error);
+                    }
                 }
                 
-                // 为移动端文件输入添加文本
-                const mobileText = this.fileInput.getAttribute('data-mobile-text');
-                if (mobileText) {
-                    this.fileInput.value = mobileText;
+                try {
+                    this.uploadArea.addEventListener('dragover', this.handleDragOver.bind(this));
+                } catch (error) {
+                    console.warn('Drag over event binding failed:', error);
                 }
-            } else {
-                // 桌面端保持原有行为
-                this.uploadArea.addEventListener('click', () => {
-                    this.fileInput.click();
-                    Utils.announceToScreenReader('File selection dialog opened');
-                });
+                
+                try {
+                    this.uploadArea.addEventListener('drop', this.handleDrop.bind(this));
+                } catch (error) {
+                    console.warn('Drop event binding failed:', error);
+                }
+                
+                try {
+                    this.uploadArea.addEventListener('dragleave', this.handleDragLeave.bind(this));
+                } catch (error) {
+                    console.warn('Drag leave event binding failed:', error);
+                }
+                
+                try {
+                    this.fileInput.addEventListener('change', this.handleFileSelect.bind(this));
+                } catch (error) {
+                    console.warn('File input change event binding failed:', error);
+                }
             }
-            
-            this.uploadArea.addEventListener('dragover', this.handleDragOver.bind(this));
-            this.uploadArea.addEventListener('drop', this.handleDrop.bind(this));
-            this.uploadArea.addEventListener('dragleave', this.handleDragLeave.bind(this));
-            this.fileInput.addEventListener('change', this.handleFileSelect.bind(this));
+        } catch (error) {
+            console.warn('Main event binding failed:', error);
         }
 
-        if (this.removeBtn) {
-            this.removeBtn.addEventListener('click', this.removeImage.bind(this));
+        try {
+            if (this.removeBtn) {
+                this.removeBtn.addEventListener('click', this.removeImage.bind(this));
+            }
+        } catch (error) {
+            console.warn('Remove button event binding failed:', error);
         }
 
-        if (this.processBtn) {
-            this.processBtn.addEventListener('click', this.processImage.bind(this));
+        try {
+            if (this.processBtn) {
+                this.processBtn.addEventListener('click', this.processImage.bind(this));
+            }
+        } catch (error) {
+            console.warn('Process button event binding failed:', error);
         }
 
-        if (this.downloadBtn) {
-            this.downloadBtn.addEventListener('click', this.downloadResult.bind(this));
+        try {
+            if (this.downloadBtn) {
+                this.downloadBtn.addEventListener('click', this.downloadResult.bind(this));
+            }
+        } catch (error) {
+            console.warn('Download button event binding failed:', error);
         }
 
-        if (this.newImageBtn) {
-            this.newImageBtn.addEventListener('click', this.resetForNewImage.bind(this));
+        try {
+            if (this.newImageBtn) {
+                this.newImageBtn.addEventListener('click', this.resetForNewImage.bind(this));
+            }
+        } catch (error) {
+            console.warn('New image button event binding failed:', error);
         }
 
-        if (this.comparisonSlider) {
-            this.comparisonSlider.addEventListener('input', 
-                Utils.throttle(this.updateComparison.bind(this), 16)
-            );
+        try {
+            if (this.comparisonSlider) {
+                this.comparisonSlider.addEventListener('input', 
+                    Utils.throttle(this.updateComparison.bind(this), 16)
+                );
+            }
+        } catch (error) {
+            console.warn('Comparison slider event binding failed:', error);
         }
 
-        this.shareButtons.forEach(btn => {
-            btn.addEventListener('click', this.handleShare.bind(this));
-        });
+        try {
+            this.shareButtons.forEach(btn => {
+                btn.addEventListener('click', this.handleShare.bind(this));
+            });
+        } catch (error) {
+            console.warn('Share buttons event binding failed:', error);
+        }
 
-        document.addEventListener('keydown', this.handleKeyboard.bind(this));
-        window.addEventListener('beforeunload', this.handleBeforeUnload.bind(this));
-        window.addEventListener('online', () => {
-            this.toast.success('Network connection restored');
-        });
-        window.addEventListener('offline', () => {
-            this.toast.warning('Network connection lost. Some features may not be available');
-        });
+        try {
+            document.addEventListener('keydown', this.handleKeyboard.bind(this));
+        } catch (error) {
+            console.warn('Keyboard event binding failed:', error);
+        }
+        
+        try {
+            window.addEventListener('beforeunload', this.handleBeforeUnload.bind(this));
+        } catch (error) {
+            console.warn('Before unload event binding failed:', error);
+        }
+        
+        try {
+            window.addEventListener('online', () => {
+                this.toast.success('Network connection restored');
+            });
+        } catch (error) {
+            console.warn('Online event binding failed:', error);
+        }
+        
+        try {
+            window.addEventListener('offline', () => {
+                this.toast.warning('Network connection lost. Some features may not be available');
+            });
+        } catch (error) {
+            console.warn('Offline event binding failed:', error);
+        }
     }
 
     setupAccessibility() {
@@ -1776,6 +2089,27 @@ if (document.readyState === 'loading') {
 
 function initializeApp() {
     try {
+        // 检查基本浏览器支持
+        if (typeof window === 'undefined') {
+            throw new Error('Window object not available');
+        }
+        
+        // 检查必要的DOM API
+        if (typeof document === 'undefined') {
+            throw new Error('Document object not available');
+        }
+        
+        // 检查文件API支持
+        if (typeof FileReader === 'undefined') {
+            console.warn('FileReader not supported, some features may not work');
+        }
+        
+        // 检查Fetch API支持
+        if (typeof fetch === 'undefined') {
+            console.warn('Fetch API not supported, API calls may not work');
+        }
+        
+        // 创建应用实例
         smileGenerator = new EnhancedAISmileGenerator();
         window.smileGenerator = smileGenerator;
         
@@ -1787,6 +2121,7 @@ function initializeApp() {
     } catch (error) {
         console.error('Failed to initialize Enhanced AI Smile Generator:', error);
         
+        // 创建更友好的错误提示
         const errorDiv = document.createElement('div');
         errorDiv.style.cssText = `
             position: fixed;
@@ -1801,13 +2136,57 @@ function initializeApp() {
             z-index: 10000;
             max-width: 500px;
             text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
         `;
+        
+        // 根据错误类型显示不同的消息
+        let errorMessage = 'Application initialization failed. Please refresh the page and try again.';
+        
+        if (error.message.includes('Window object not available')) {
+            errorMessage = '浏览器环境不支持，请使用现代浏览器。';
+        } else if (error.message.includes('Document object not available')) {
+            errorMessage = '页面加载异常，请刷新页面重试。';
+        } else if (error.message.includes('FileReader')) {
+            errorMessage = '您的浏览器不支持文件上传功能，请使用其他浏览器。';
+        }
+        
         errorDiv.innerHTML = `
-            <strong>Application initialization failed</strong><br>
-            Please refresh the page and try again, or check the browser console for detailed error information.
+            <strong>应用程序初始化失败</strong><br>
+            ${errorMessage}<br>
+            <small>错误详情: ${error.message}</small>
         `;
+        
+        // 添加关闭按钮
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '✕';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: #dc2626;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        closeBtn.onclick = () => {
+            if (errorDiv.parentNode) {
+                errorDiv.parentNode.removeChild(errorDiv);
+            }
+        };
+        errorDiv.appendChild(closeBtn);
+        
         document.body.appendChild(errorDiv);
         
+        // 10秒后自动移除错误提示
         setTimeout(() => {
             if (errorDiv.parentNode) {
                 errorDiv.parentNode.removeChild(errorDiv);
