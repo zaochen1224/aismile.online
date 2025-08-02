@@ -1279,9 +1279,9 @@ class EnhancedAISmileGenerator {
                 }
             }];
             
-            this.toast.warning(
-                'Please set your AILabTools API key. Run in browser console: smileGenerator.setApiKey("your-api-key")',
-                0,
+            this.toast.info(
+                'Welcome! To use AI features, you can set your API key when processing images.',
+                8000,
                 actions
             );
         }
@@ -1529,17 +1529,10 @@ class EnhancedAISmileGenerator {
     async processImage() {
         if (!this.currentImage || this.isProcessing) return;
 
+        // Check if API key is available
         if (!this.apiClient.apiKey) {
-            const actions = [{
-                id: 'set-key',
-                label: 'Set Key',
-                callback: () => {
-                    const key = prompt('Please enter your AILabTools API key:');
-                    if (key) this.setApiKey(key);
-                }
-            }];
-            
-            this.toast.error('Please set API key first', 0, actions);
+            // Show a more user-friendly API key setup dialog
+            this.showApiKeySetupDialog();
             return;
         }
 
@@ -1616,6 +1609,128 @@ class EnhancedAISmileGenerator {
             this.isProcessing = false;
             this.hideLoading();
         }
+    }
+    
+    // Show API key setup dialog
+    showApiKeySetupDialog() {
+        const dialog = document.createElement('div');
+        dialog.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        `;
+        
+        const content = document.createElement('div');
+        content.style.cssText = `
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        `;
+        
+        content.innerHTML = `
+            <h2 style="margin: 0 0 20px 0; color: #1f2937; font-size: 24px;">🔑 API Key Required</h2>
+            <p style="margin: 0 0 20px 0; color: #6b7280; line-height: 1.6;">
+                To use the AI smile filter, you need to set up your AILabTools API key.
+            </p>
+            <div style="margin: 20px 0;">
+                <input type="text" id="apiKeyInput" placeholder="Enter your AILabTools API key" 
+                       style="width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 16px; margin-bottom: 10px;">
+                <p style="margin: 0; font-size: 14px; color: #9ca3af;">
+                    Get your free API key at: <a href="https://ailabapi.com" target="_blank" style="color: #4f46e5;">ailabapi.com</a>
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button id="setApiKeyBtn" style="
+                    background: #4f46e5; 
+                    color: white; 
+                    border: none; 
+                    padding: 12px 24px; 
+                    border-radius: 8px; 
+                    font-size: 16px; 
+                    font-weight: 600; 
+                    cursor: pointer;">
+                    Set API Key
+                </button>
+                <button id="demoModeBtn" style="
+                    background: #6b7280; 
+                    color: white; 
+                    border: none; 
+                    padding: 12px 24px; 
+                    border-radius: 8px; 
+                    font-size: 16px; 
+                    font-weight: 600; 
+                    cursor: pointer;">
+                    Try Demo Mode
+                </button>
+                <button id="closeDialogBtn" style="
+                    background: #e5e7eb; 
+                    color: #374151; 
+                    border: none; 
+                    padding: 12px 24px; 
+                    border-radius: 8px; 
+                    font-size: 16px; 
+                    font-weight: 600; 
+                    cursor: pointer;">
+                    Cancel
+                </button>
+            </div>
+        `;
+        
+        dialog.appendChild(content);
+        document.body.appendChild(dialog);
+        
+        // Add event listeners
+        const apiKeyInput = content.querySelector('#apiKeyInput');
+        const setApiKeyBtn = content.querySelector('#setApiKeyBtn');
+        const demoModeBtn = content.querySelector('#demoModeBtn');
+        const closeDialogBtn = content.querySelector('#closeDialogBtn');
+        
+        setApiKeyBtn.addEventListener('click', () => {
+            const apiKey = apiKeyInput.value.trim();
+            if (apiKey) {
+                this.setApiKey(apiKey);
+                document.body.removeChild(dialog);
+                this.toast.success('API key set successfully! You can now process images.');
+                // Retry processing
+                this.processImage();
+            } else {
+                this.toast.error('Please enter a valid API key.');
+            }
+        });
+        
+        demoModeBtn.addEventListener('click', () => {
+            document.body.removeChild(dialog);
+            this.showDemoResult();
+            this.toast.info('Demo mode activated. Set API key for real AI processing.');
+        });
+        
+        closeDialogBtn.addEventListener('click', () => {
+            document.body.removeChild(dialog);
+        });
+        
+        // Close on background click
+        dialog.addEventListener('click', (e) => {
+            if (e.target === dialog) {
+                document.body.removeChild(dialog);
+            }
+        });
+        
+        // Focus on input
+        setTimeout(() => {
+            apiKeyInput.focus();
+        }, 100);
     }
 
     updateProgress(progress, text, estimatedTime = null) {
@@ -1767,12 +1882,11 @@ class EnhancedAISmileGenerator {
                 id: 'set-api-key',
                 label: 'Set API Key',
                 callback: () => {
-                    const key = prompt('Please enter your AILabTools API key:');
-                    if (key) this.setApiKey(key);
+                    this.showApiKeySetupDialog();
                 }
             }];
             
-            this.toast.info('Showing demo result. Set API key to use real AI processing.', 10000, actions);
+            this.toast.info('Demo mode: Showing sample result. Set API key for real AI processing.', 10000, actions);
         } catch (error) {
             console.error('Failed to create demo result:', error);
         }
@@ -1788,18 +1902,29 @@ class EnhancedAISmileGenerator {
                 canvas.width = img.width;
                 canvas.height = img.height;
                 
+                // Draw original image
                 ctx.drawImage(img, 0, 0);
                 
+                // Add demo overlay
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                ctx.fillRect(0, img.height - 80, img.width, 80);
+                ctx.fillRect(0, img.height - 100, img.width, 100);
                 
+                // Add demo text
                 ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 24px Arial';
+                ctx.font = 'bold 20px Arial';
                 ctx.textAlign = 'center';
-                ctx.fillText('Demo Mode - Please Configure API Key', img.width / 2, img.height - 45);
+                ctx.fillText('Demo Mode - Sample Result', img.width / 2, img.height - 70);
                 
-                ctx.font = '16px Arial';
-                ctx.fillText('Set your AILabTools API key to use real AI processing', img.width / 2, img.height - 20);
+                ctx.font = '14px Arial';
+                ctx.fillText('Set API key for real AI processing', img.width / 2, img.height - 45);
+                ctx.fillText('Get free API key at ailabapi.com', img.width / 2, img.height - 25);
+                
+                // Add a subtle smile effect overlay
+                ctx.globalAlpha = 0.3;
+                ctx.fillStyle = '#ffd700';
+                ctx.beginPath();
+                ctx.arc(img.width / 2, img.height / 2 - 50, 30, 0, Math.PI);
+                ctx.stroke();
                 
                 resolve(canvas.toDataURL('image/jpeg', 0.9));
             };
