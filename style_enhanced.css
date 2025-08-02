@@ -466,6 +466,80 @@ body {
     cursor: pointer;
 }
 
+/* iOS Safari 特殊处理 */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .file-input {
+        /* 确保在iOS Safari上可见 */
+        position: relative;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        /* 隐藏默认样式但保持功能 */
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+    
+    /* iOS设备上的上传区域样式 */
+    .upload-area {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* 为iOS添加触摸反馈 */
+    .upload-area:active {
+        transform: scale(0.98);
+        background: var(--primary-50);
+    }
+}
+
+/* 移动端特殊样式 */
+@media (max-width: 768px) {
+    .file-input {
+        /* 在移动端确保文件输入可用 */
+        position: relative;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        /* 隐藏默认样式 */
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+        outline: none;
+        /* 确保在iOS上可点击 */
+        touch-action: manipulation;
+    }
+    
+    .upload-area {
+        /* 确保在移动端有足够的点击区域 */
+        min-height: 200px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* 为移动端添加视觉提示 */
+    .upload-area::after {
+        content: '📱 点击选择照片';
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(79, 70, 229, 0.9);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 5;
+        pointer-events: none;
+    }
+}
+
 /* Enhanced Image Preview */
 .image-preview {
     background: var(--white);

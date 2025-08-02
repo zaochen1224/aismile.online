@@ -746,6 +746,7 @@ class EnhancedAISmileGenerator {
             this.initializeComparison();
             this.setupAccessibility();
             this.setupPerformanceMonitoring();
+            this.checkMobileCompatibility();
             
             console.log('Enhanced AI Smile Generator initialized successfully');
             Utils.announceToScreenReader('AI Smile Generator is ready');
@@ -753,6 +754,29 @@ class EnhancedAISmileGenerator {
         } catch (error) {
             console.error('Failed to initialize application:', error);
             this.toast.error('Application initialization failed. Please refresh the page and try again.');
+        }
+    }
+    
+    // 检测移动端浏览器兼容性
+    checkMobileCompatibility() {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        
+        if (isMobile) {
+            console.log('Mobile device detected');
+            console.log('iOS:', isIOS);
+            console.log('Safari:', isSafari);
+            
+            if (isIOS && isSafari) {
+                console.log('iOS Safari detected - applying special handling');
+                this.toast.info('检测到iOS设备，已启用特殊优化');
+            }
+            
+            // 检查文件API支持
+            if (typeof FileReader === 'undefined') {
+                this.toast.warning('您的浏览器可能不支持文件上传功能，请尝试使用其他浏览器');
+            }
         }
     }
 
@@ -833,6 +857,7 @@ class EnhancedAISmileGenerator {
         if (this.uploadArea && this.fileInput) {
             // 检测是否为移动设备
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             
             if (isMobile) {
                 // 移动端特殊处理
@@ -840,6 +865,44 @@ class EnhancedAISmileGenerator {
                     e.stopPropagation();
                     Utils.announceToScreenReader('File selection dialog opened');
                 });
+                
+                // iOS Safari 特殊处理
+                if (isIOS) {
+                    // 为iOS添加触摸事件处理
+                    this.uploadArea.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        this.handleMobileFileUpload();
+                    });
+                    
+                    // 防止iOS上的双击缩放
+                    this.uploadArea.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                    });
+                    
+                    // 添加点击事件作为备用
+                    this.uploadArea.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.handleMobileFileUpload();
+                    });
+                    
+                    // 添加长按事件作为额外备用
+                    this.uploadArea.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        this.handleMobileFileUploadFallback();
+                    });
+                } else {
+                    // 其他移动设备
+                    this.uploadArea.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        this.handleMobileFileUpload();
+                    });
+                    
+                    // 添加触摸事件
+                    this.uploadArea.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        this.handleMobileFileUpload();
+                    });
+                }
                 
                 // 为移动端文件输入添加文本
                 const mobileText = this.fileInput.getAttribute('data-mobile-text');
@@ -991,6 +1054,82 @@ class EnhancedAISmileGenerator {
         const file = e.target.files[0];
         if (file) {
             this.handleFile(file);
+        }
+    }
+
+    // 移动端文件上传处理
+    handleMobileFileUpload() {
+        try {
+            console.log('Mobile file upload initiated');
+            
+            // 创建新的文件输入元素
+            const newFileInput = document.createElement('input');
+            newFileInput.type = 'file';
+            newFileInput.accept = 'image/jpeg,image/jpg,image/png,image/webp';
+            newFileInput.capture = 'environment';
+            newFileInput.multiple = false;
+            
+            // 设置样式
+            newFileInput.style.position = 'fixed';
+            newFileInput.style.top = '0';
+            newFileInput.style.left = '0';
+            newFileInput.style.width = '100%';
+            newFileInput.style.height = '100%';
+            newFileInput.style.opacity = '0';
+            newFileInput.style.zIndex = '9999';
+            
+            // 添加到页面
+            document.body.appendChild(newFileInput);
+            
+            // 监听文件选择
+            newFileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    console.log('File selected:', file.name, file.size, file.type);
+                    this.handleFile(file);
+                } else {
+                    console.log('No file selected');
+                    this.toast.info('未选择文件，请重试');
+                }
+                // 清理临时元素
+                document.body.removeChild(newFileInput);
+            });
+            
+            // 监听错误
+            newFileInput.addEventListener('error', (e) => {
+                console.error('File input error:', e);
+                this.toast.error('文件选择出错，请重试');
+                document.body.removeChild(newFileInput);
+            });
+            
+            // 触发文件选择
+            newFileInput.click();
+            
+        } catch (error) {
+            console.error('Mobile file upload error:', error);
+            this.toast.error('移动端文件上传失败，请重试');
+            
+            // 备用方案：使用原始文件输入
+            console.log('Falling back to original file input');
+            if (this.fileInput) {
+                this.fileInput.click();
+            }
+        }
+    }
+    
+    // 备用移动端文件上传方法
+    handleMobileFileUploadFallback() {
+        if (this.fileInput) {
+            // 确保原始文件输入在移动端可见
+            this.fileInput.style.position = 'relative';
+            this.fileInput.style.opacity = '1';
+            this.fileInput.style.width = '100%';
+            this.fileInput.style.height = '100%';
+            this.fileInput.style.zIndex = '10';
+            this.fileInput.style.pointerEvents = 'auto';
+            
+            // 触发点击
+            this.fileInput.click();
         }
     }
 

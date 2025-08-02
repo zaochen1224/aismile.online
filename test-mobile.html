@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端文件上传测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .upload-area:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
+        
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 移动端文件上传测试</h1>
+        
+        <div class="info">
+            <h3>测试说明：</h3>
+            <p>此页面用于测试在苹果手机Safari浏览器中的文件上传功能。</p>
+            <p>点击下方区域选择图片文件。</p>
+        </div>
+        
+        <div class="upload-area" id="uploadArea">
+            <h2>📸 点击选择照片</h2>
+            <p>支持 JPG、PNG、WebP 格式</p>
+            <input type="file" id="fileInput" class="file-input" 
+                   accept="image/jpeg,image/jpg,image/png,image/webp"
+                   capture="environment">
+        </div>
+        
+        <div class="result" id="result">
+            <h3>选择的文件：</h3>
+            <div id="fileInfo"></div>
+            <img id="preview" alt="预览图片">
+        </div>
+    </div>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const result = document.getElementById('result');
+        const fileInfo = document.getElementById('fileInfo');
+        const preview = document.getElementById('preview');
+        
+        // 检测设备类型
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        
+        console.log('设备检测:', {
+            isMobile,
+            isIOS,
+            isSafari,
+            userAgent: navigator.userAgent
+        });
+        
+        // 移动端文件上传处理
+        function handleMobileFileUpload() {
+            try {
+                console.log('开始移动端文件上传');
+                
+                const newFileInput = document.createElement('input');
+                newFileInput.type = 'file';
+                newFileInput.accept = 'image/jpeg,image/jpg,image/png,image/webp';
+                newFileInput.capture = 'environment';
+                newFileInput.multiple = false;
+                
+                newFileInput.style.position = 'fixed';
+                newFileInput.style.top = '0';
+                newFileInput.style.left = '0';
+                newFileInput.style.width = '100%';
+                newFileInput.style.height = '100%';
+                newFileInput.style.opacity = '0';
+                newFileInput.style.zIndex = '9999';
+                
+                document.body.appendChild(newFileInput);
+                
+                newFileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        console.log('文件已选择:', file.name, file.size, file.type);
+                        handleFile(file);
+                    } else {
+                        console.log('未选择文件');
+                        alert('未选择文件，请重试');
+                    }
+                    document.body.removeChild(newFileInput);
+                });
+                
+                newFileInput.addEventListener('error', (e) => {
+                    console.error('文件输入错误:', e);
+                    alert('文件选择出错，请重试');
+                    document.body.removeChild(newFileInput);
+                });
+                
+                newFileInput.click();
+                
+            } catch (error) {
+                console.error('移动端文件上传错误:', error);
+                alert('移动端文件上传失败，请重试');
+                
+                // 备用方案
+                if (fileInput) {
+                    fileInput.click();
+                }
+            }
+        }
+        
+        function handleFile(file) {
+            console.log('处理文件:', file);
+            
+            fileInfo.innerHTML = `
+                <p><strong>文件名:</strong> ${file.name}</p>
+                <p><strong>文件大小:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                <p><strong>文件类型:</strong> ${file.type}</p>
+            `;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                result.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // 绑定事件
+        if (isMobile) {
+            if (isIOS) {
+                // iOS Safari 特殊处理
+                uploadArea.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    handleMobileFileUpload();
+                });
+                
+                uploadArea.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleMobileFileUpload();
+                });
+            } else {
+                // 其他移动设备
+                uploadArea.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    handleMobileFileUpload();
+                });
+                
+                uploadArea.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    handleMobileFileUpload();
+                });
+            }
+        } else {
+            // 桌面端
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+        }
+        
+        // 原始文件输入作为备用
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
+        
+        // 显示设备信息
+        const deviceInfo = document.createElement('div');
+        deviceInfo.className = 'info';
+        deviceInfo.innerHTML = `
+            <h3>设备信息：</h3>
+            <p>移动设备: ${isMobile ? '是' : '否'}</p>
+            <p>iOS设备: ${isIOS ? '是' : '否'}</p>
+            <p>Safari浏览器: ${isSafari ? '是' : '否'}</p>
+            <p>用户代理: ${navigator.userAgent}</p>
+        `;
+        document.querySelector('.container').insertBefore(deviceInfo, uploadArea);
+    </script>
+</body>
+</html> 
